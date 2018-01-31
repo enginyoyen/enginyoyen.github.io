@@ -10,8 +10,6 @@ description: > # this means to ignore newlines until "email:"
    Software Engineer
 
 email: mail@enginyoyen.com
-#blog logo
-#logo: "/assets/images/df_logo.jpg"
 logo: "/assets/article_images/wp-content/uploads/2015/01/Screen-Shot-2015-01-05-at-00.19.29-300x300.png"
 float_logo: true # true, false (default)
 
