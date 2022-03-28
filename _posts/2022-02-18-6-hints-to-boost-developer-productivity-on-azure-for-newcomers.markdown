@@ -3,7 +3,7 @@ layout:	post
 title:	"6 hints to boost Developer Productivity on Azure for Newcomers"
 date:	2022-02-18
 ---
-![](/img/1*fexDFz1upyeAr5TDbTQzEA.jpeg)Image: Productivity by [Kris](https://unsplash.com/@finesite) on [Unsplash](https://unsplash.com/photos/n9u9ZEoH2yM)
+![Image: Productivity by [Kris](https://unsplash.com/@finesite) on [Unsplash](https://unsplash.com/photos/n9u9ZEoH2yM)](/img/1*fexDFz1upyeAr5TDbTQzEA.jpeg)
 
 Organizations are in a tight race to develop software faster to deliver value and innovate. Developer productivity is a key to getting ahead in the race for innovation and business performance. Cloud technologies have become the bedrock for this race and support developer productivity.
 
