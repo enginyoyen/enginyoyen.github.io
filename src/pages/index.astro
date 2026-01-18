@@ -29,11 +29,43 @@ const latestNotes = allNotes
 <PageLayout meta={{ title: "Home" }}>
 	<div class="editorial-homepage">
 		<!-- Hero Section with Editorial Typography -->
-		<section
-			class="hero-section relative min-h-[80vh] overflow-hidden border-t border-gray-200 pt-8 pb-20"
-		>
+		<section class="hero-section relative min-h-[80vh] overflow-hidden pt-0 pb-0">
+			<div class="mx-auto w-[92%] border-t border-black pt-0">
+				<!-- Hero Content - Image and Text Side by Side -->
+				<div
+					class="flex flex-col items-center gap-8 pt-4 sm:pt-8 lg:flex-row lg:items-start lg:gap-12"
+				>
+					<!-- Hero Image -->
+					<div class="hero-image w-full lg:w-1/2">
+						<img
+							src="/hero-image-v2.jpg"
+							alt="Engin Yöyen"
+							class="mx-auto h-auto w-full max-w-3xl lg:max-w-full"
+						/>
+					</div>
+
+					<!-- Hero Text -->
+					<div class="hero-intro w-full lg:w-1/2 lg:pt-8">
+						<p class="text-2xl leading-relaxed sm:text-3xl lg:text-4xl">
+							I <Highlighter client:visible color="#fbbf24" action="highlight" delay={0.2}
+								><span class="font-bold">build</span></Highlighter
+							> software, <Highlighter client:visible color="#a78bfa" action="highlight" delay={0.4}
+								><span class="font-bold">write</span></Highlighter
+							> books, and <Highlighter
+								client:visible
+								color="#34d399"
+								action="highlight"
+								delay={0.6}><span class="font-bold">run a startup</span></Highlighter
+							>, an <Highlighter client:visible color="#f472b6" action="underline" delay={0.8}
+								><span class="font-bold">avid reader</span></Highlighter
+							> by default.
+						</p>
+					</div>
+				</div>
+			</div>
+
 			<!-- Massive Headline -->
-			<div class="hero-text relative w-full pt-12 sm:pt-20">
+			<!-- <div class="hero-text relative w-full pt-12 sm:pt-20">
 				<h1 class="editorial-hero relative w-full">
 					<span
 						class="hero-greeting block text-lg font-semibold tracking-[0.3em] uppercase sm:text-xl md:text-2xl lg:text-3xl"
@@ -45,7 +77,7 @@ const latestNotes = allNotes
 					>
 						<span class="name-text relative z-10 block w-full">ENGİN</span>
 						<!-- Decorative overlays - positioned absolutely over the text -->
-						<div
+			<!-- <div
 							class="decorative-overlay bg-accent absolute top-[-15%] left-[5%] z-20 h-24 w-24 rotate-12 rounded-full opacity-80 sm:left-[8%] sm:h-32 sm:w-32 lg:left-[10%] lg:h-40 lg:w-40"
 						>
 						</div>
@@ -56,24 +88,13 @@ const latestNotes = allNotes
 						<div
 							class="decorative-accent bg-accent/60 absolute top-[10%] right-[10%] z-20 h-20 w-20 rotate-45 sm:right-[12%] sm:h-24 sm:w-24 lg:right-[15%] lg:h-28 lg:w-28"
 						>
-						</div>
-					</span>
+						</div> -->
+			<!-- </span>
 				</h1>
-			</div>
+			</div> -->
 
 			<!-- Supporting Text Block -->
 			<div class="supporting-text mx-auto mt-16 max-w-3xl space-y-6 px-4 sm:mt-24">
-				<p class="text-2xl leading-relaxed sm:text-3xl lg:text-4xl">
-					I <Highlighter client:visible color="#fbbf24" action="highlight" delay={0.2}
-						><span class="font-bold">build</span></Highlighter
-					> software, <Highlighter client:visible color="#a78bfa" action="highlight" delay={0.4}
-						><span class="font-bold">write</span></Highlighter
-					> books, and <Highlighter client:visible color="#34d399" action="highlight" delay={0.6}
-						><span class="font-bold">run a startup</span></Highlighter
-					>, an <Highlighter client:visible color="#f472b6" action="underline" delay={0.8}
-						><span class="font-bold">avid reader</span></Highlighter
-					> by default.
-				</p>
 				<p class="text-xl leading-relaxed sm:text-2xl lg:text-3xl">
 					An <Highlighter client:visible color="#fb923c" action="underline" delay={1.0}
 						><span class="font-semibold">autodidact</span></Highlighter
@@ -123,7 +144,7 @@ const latestNotes = allNotes
 					href="/posts/"
 					class="editorial-button inline-block border-2 border-black px-8 py-3 text-sm font-semibold tracking-[0.2em] uppercase transition-all hover:bg-black hover:text-white sm:px-12 sm:py-4 sm:text-base"
 				>
-					READ MY WORK &lt;&lt;&lt;
+					READ MY BLOG &lt;&lt;&lt;
 				</a>
 			</div>
 
@@ -135,53 +156,53 @@ const latestNotes = allNotes
 				</svg>
 			</div>
 		</section>
+	</div>
 
-		<!-- Posts Section -->
-		{
-			pinnedPosts.length > 0 && (
-				<section class="posts-section mx-auto max-w-4xl px-4 py-16">
-					<h2 class="title mb-6 text-xl">Pinned Posts</h2>
-					<ul class="space-y-4" role="list">
-						{pinnedPosts.map((p) => (
-							<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-								<PostPreview post={p} />
-							</li>
-						))}
-					</ul>
-				</section>
-			)
-		}
-		<section class="posts-section mx-auto max-w-4xl px-4 py-8">
-			<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Latest Posts</a></h2>
-			<ul class="space-y-4" role="list">
-				{
-					latestPosts.map((p) => (
+	<!-- Posts Section -->
+	{
+		pinnedPosts.length > 0 && (
+			<section class="posts-section mx-auto max-w-4xl px-4 py-16">
+				<h2 class="title mb-6 text-xl">Pinned Posts</h2>
+				<ul class="space-y-4" role="list">
+					{pinnedPosts.map((p) => (
 						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
 							<PostPreview post={p} />
 						</li>
-					))
-				}
-			</ul>
-		</section>
+					))}
+				</ul>
+			</section>
+		)
+	}
+	<section class="posts-section mx-auto max-w-4xl px-4 py-8">
+		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Latest Posts</a></h2>
+		<ul class="space-y-4" role="list">
+			{
+				latestPosts.map((p) => (
+					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+						<PostPreview post={p} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
 
-		<!-- Notes Section -->
-		{
-			latestNotes.length > 0 && (
-				<section class="notes-section mx-auto max-w-4xl px-4 py-16">
-					<h2 class="title text-accent mb-6 text-xl">
-						<a href="/notes/">Notes</a>
-					</h2>
-					<ul class="space-y-6" role="list">
-						{latestNotes.map((note) => (
-							<li>
-								<Note note={note} as="h3" isPreview />
-							</li>
-						))}
-					</ul>
-				</section>
-			)
-		}
-	</div>
+	<!-- Notes Section -->
+	{
+		latestNotes.length > 0 && (
+			<section class="notes-section mx-auto max-w-4xl px-4 py-16">
+				<h2 class="title text-accent mb-6 text-xl">
+					<a href="/notes/">Notes</a>
+				</h2>
+				<ul class="space-y-6" role="list">
+					{latestNotes.map((note) => (
+						<li>
+							<Note note={note} as="h3" isPreview />
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
 </PageLayout>
 
 <style>
