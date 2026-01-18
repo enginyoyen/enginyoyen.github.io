@@ -2,9 +2,10 @@
 title: Your Production System Is Already Broken (Ask Cloudflare)
 description: How the Cloudflare outage reveals the uncomfortable truth about complex systems
 publishDate: "2025-12-13T10:00:00Z"
+updatedDate: "2026-01-18T10:00:00Z"
 ---
 
-November 18, 2025: X, ChatGPT, Spotify, League of Legends—all down. A chunk of the internet just stopped.
+November 18, 2025: A chunk of the internet just stopped.
 
 The culprit?[^1] A bad deployment pushed a feature file with more than 200 entries—exceeding the preallocated memory limit of exactly 200. The Bot Management system across every proxy panicked simultaneously. All failed.
 
