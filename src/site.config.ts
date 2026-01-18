@@ -29,6 +29,8 @@ export const siteConfig: SiteConfig = {
 	title: "Engin Yöyen",
 	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
 	url: "https://enginyoyen.github.io/",
+	// Google Analytics Measurement ID (e.g., G-XXXXXXXXXX)
+	googleAnalyticsId: "G-9SGN9LP5KN", // Replace with your actual Google Analytics ID
 };
 
 // Used to generate links in both the Header & Footer.
