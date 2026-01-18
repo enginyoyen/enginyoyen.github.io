@@ -1,0 +1,76 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "Get in touch with Engin Yöyen. I promise to read your message... eventually.",
+	title: "Contact",
+};
+---
+
+<PageLayout meta={meta}>
+	<div class="animate-fade-in">
+		<h1 class="title mb-12 text-4xl font-bold sm:text-5xl">Contact</h1>
+
+		<div class="prose prose-sm prose-cactus max-w-none space-y-8">
+			<section
+				class="border-border to-accent/5 rounded-xl border bg-linear-to-br from-transparent p-6"
+			>
+				<h2 class="mb-4 flex items-center gap-2 text-2xl font-bold">
+					<span>📬</span>
+					<span>Drop Me a Line</span>
+				</h2>
+				<p class="leading-relaxed">
+					Got a question? A brilliant idea? Found a typo? (Please say you found a typo—I love fixing
+					those.) Maybe you just want to chat about Berlin, or discuss whether Schrödinger's
+					deployment is both working and broken until someone checks the logs.
+				</p>
+				<p class="leading-relaxed">
+					Whatever it is, fill out the form below. Response time may vary depending on how many two
+					tiny humans are currently climbing me.
+				</p>
+			</section>
+
+			<section
+				class="border-accent/20 to-accent/5 rounded-xl border bg-linear-to-br from-transparent p-6"
+			>
+				<iframe
+					data-tally-src="https://tally.so/embed/NpXxMO?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+					loading="lazy"
+					width="100%"
+					height="600"
+					frameborder="0"
+					marginheight="0"
+					marginwidth="0"
+					title="Contact Form Template"></iframe>
+			</section>
+
+			<section class="text-sm opacity-75">
+				<p class="leading-relaxed">
+					P.S. If you're a recruiter, please include "motorcycle" somewhere in your message so I
+					know you actually read this. If you're trying to sell me SEO services, I respect the
+					hustle, but no thanks.
+				</p>
+			</section>
+		</div>
+	</div>
+</PageLayout>
+
+<script>
+	var d = document,
+		w = "https://tally.so/widgets/embed.js",
+		v = function () {
+			"undefined" != typeof Tally
+				? Tally.loadEmbeds()
+				: d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
+						e.src = e.dataset.tallySrc;
+					});
+		};
+	if ("undefined" != typeof Tally) v();
+	else if (d.querySelector('script[src="' + w + '"]') == null) {
+		var s = d.createElement("script");
+		s.src = w;
+		s.onload = v;
+		s.onerror = v;
+		d.body.appendChild(s);
+	}
+</script>
