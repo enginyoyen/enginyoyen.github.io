@@ -1,0 +1,333 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import Note from "@/components/note/Note.astro";
+import SocialList from "@/components/SocialList.astro";
+import { Highlighter } from "@/components/ui/Highlighter";
+import { getAllPosts } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+// Posts
+const MAX_POSTS = 10;
+const allPosts = await getAllPosts();
+const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
+const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
+
+// Pinned Posts, set to a max of 3;
+const MAX_PINNED_POSTS = 3;
+const pinnedPosts = allPostsByDate.filter((p) => p.data.pinned).slice(0, MAX_PINNED_POSTS);
+
+// Notes
+const MAX_NOTES = 5;
+const allNotes = await getCollection("note");
+const latestNotes = allNotes
+	.sort(collectionDateSort)
+	.slice(0, MAX_NOTES) as CollectionEntry<"note">[];
+---
+
+<PageLayout meta={{ title: "Home" }}>
+	<div class="editorial-homepage">
+		<!-- Hero Section with Editorial Typography -->
+		<section
+			class="hero-section relative min-h-[80vh] overflow-hidden border-t border-gray-200 pt-8 pb-20"
+		>
+			<!-- Massive Headline -->
+			<div class="hero-text relative w-full pt-12 sm:pt-20">
+				<h1 class="editorial-hero relative w-full">
+					<span
+						class="hero-greeting block text-lg font-semibold tracking-[0.3em] uppercase sm:text-xl md:text-2xl lg:text-3xl"
+						>HELLO, I'M</span
+					>
+					<span
+						class="hero-name relative block w-full"
+						style="margin-top: clamp(-4rem, -5vw, -1.5rem);"
+					>
+						<span class="name-text relative z-10 block w-full">ENGİN</span>
+						<!-- Decorative overlays - positioned absolutely over the text -->
+						<div
+							class="decorative-overlay bg-accent absolute top-[-15%] left-[5%] z-20 h-24 w-24 rotate-12 rounded-full opacity-80 sm:left-[8%] sm:h-32 sm:w-32 lg:left-[10%] lg:h-40 lg:w-40"
+						>
+						</div>
+						<div
+							class="decorative-frame border-accent-2 bg-link/20 absolute top-[15%] left-[40%] z-20 h-32 w-32 rotate-[-8deg] border-4 sm:h-40 sm:w-40 lg:h-48 lg:w-48"
+						>
+						</div>
+						<div
+							class="decorative-accent bg-accent/60 absolute top-[10%] right-[10%] z-20 h-20 w-20 rotate-45 sm:right-[12%] sm:h-24 sm:w-24 lg:right-[15%] lg:h-28 lg:w-28"
+						>
+						</div>
+					</span>
+				</h1>
+			</div>
+
+			<!-- Supporting Text Block -->
+			<div class="supporting-text mx-auto mt-16 max-w-3xl space-y-6 px-4 sm:mt-24">
+				<p class="text-2xl leading-relaxed sm:text-3xl lg:text-4xl">
+					I <Highlighter client:visible color="#fbbf24" action="highlight" delay={0.2}
+						><span class="font-bold">build</span></Highlighter
+					> software, <Highlighter client:visible color="#a78bfa" action="highlight" delay={0.4}
+						><span class="font-bold">write</span></Highlighter
+					> books, and <Highlighter client:visible color="#34d399" action="highlight" delay={0.6}
+						><span class="font-bold">run a startup</span></Highlighter
+					>, an <Highlighter client:visible color="#f472b6" action="underline" delay={0.8}
+						><span class="font-bold">avid reader</span></Highlighter
+					> by default.
+				</p>
+				<p class="text-xl leading-relaxed sm:text-2xl lg:text-3xl">
+					An <Highlighter client:visible color="#fb923c" action="underline" delay={1.0}
+						><span class="font-semibold">autodidact</span></Highlighter
+					> by nature, drawn to science, psychology, sociology, chess, motorcycling, and conversations
+					that go beyond the surface.
+				</p>
+				<p class="text-lg leading-relaxed text-gray-600 sm:text-xl lg:text-2xl">
+					My work spans <Highlighter client:visible color="#f59e0b" action="underline" delay={1.7}
+						><span class="font-semibold">distributed systems</span></Highlighter
+					> in telecom, e-commerce, and education, from IoT platforms to smart classroom solutions, including
+					time at <Highlighter client:visible color="#fb923c" action="highlight" delay={1.9}
+						><span class="font-bold">Microsoft and eBay</span></Highlighter
+					>.
+				</p>
+				<p class="text-lg leading-relaxed text-gray-600 sm:text-xl lg:text-2xl">
+					With a background in <Highlighter
+						client:visible
+						color="#8b5cf6"
+						action="underline"
+						delay={2.1}
+						><span class="font-semibold">Computer Science and Psychology</span></Highlighter
+					>, Business Administration, and a Master's in Embedded Software Engineering.
+				</p>
+				<p class="text-lg leading-relaxed text-gray-600 sm:text-xl lg:text-2xl">
+					Now I'm building <a
+						href="https://trustpath.io?utm_source=enginyoyen&utm_medium=website&utm_campaign=homepage"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="cactus-link"
+						><Highlighter client:visible color="#10b981" action="underline" delay={2.9}
+							><span class="font-bold">trustpath.io</span></Highlighter
+						></a
+					> in Berlin, between raising two humans.
+				</p>
+			</div>
+
+			<!-- Social Links -->
+			<div class="social-section mt-12 px-4 text-center sm:mt-16">
+				<div class="flex justify-center">
+					<SocialList />
+				</div>
+			</div>
+
+			<!-- Call to Action -->
+			<div class="cta-section mt-8 px-4 text-center sm:mt-12">
+				<a
+					href="/posts/"
+					class="editorial-button inline-block border-2 border-black px-8 py-3 text-sm font-semibold tracking-[0.2em] uppercase transition-all hover:bg-black hover:text-white sm:px-12 sm:py-4 sm:text-base"
+				>
+					READ MY WORK &lt;&lt;&lt;
+				</a>
+			</div>
+
+			<!-- Decorative Elements -->
+			<div class="decorative-bottom absolute bottom-0 left-0 -z-10 opacity-30">
+				<svg width="200" height="200" viewBox="0 0 200 200" class="text-accent">
+					<circle cx="100" cy="100" r="80" fill="currentColor" opacity="0.3"></circle>
+					<circle cx="120" cy="80" r="40" fill="currentColor" opacity="0.5"></circle>
+				</svg>
+			</div>
+		</section>
+
+		<!-- Posts Section -->
+		{
+			pinnedPosts.length > 0 && (
+				<section class="posts-section mx-auto max-w-4xl px-4 py-16">
+					<h2 class="title mb-6 text-xl">Pinned Posts</h2>
+					<ul class="space-y-4" role="list">
+						{pinnedPosts.map((p) => (
+							<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+								<PostPreview post={p} />
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+		<section class="posts-section mx-auto max-w-4xl px-4 py-8">
+			<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Latest Posts</a></h2>
+			<ul class="space-y-4" role="list">
+				{
+					latestPosts.map((p) => (
+						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+							<PostPreview post={p} />
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		<!-- Notes Section -->
+		{
+			latestNotes.length > 0 && (
+				<section class="notes-section mx-auto max-w-4xl px-4 py-16">
+					<h2 class="title text-accent mb-6 text-xl">
+						<a href="/notes/">Notes</a>
+					</h2>
+					<ul class="space-y-6" role="list">
+						{latestNotes.map((note) => (
+							<li>
+								<Note note={note} as="h3" isPreview />
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+	</div>
+</PageLayout>
+
+<style>
+	/* Override body background for homepage only */
+	:global(body:has(.editorial-homepage)) {
+		background: white !important;
+	}
+
+	:global([data-theme="dark"] body:has(.editorial-homepage)) {
+		background: oklch(23.64% 0.0045 248) !important;
+	}
+
+	/* Break out of the parent max-width constraint */
+	.editorial-homepage {
+		background: white;
+		color: #000;
+		margin-left: calc(-50vw + 50%);
+		margin-right: calc(-50vw + 50%);
+		width: 100vw;
+		max-width: 100vw;
+	}
+
+	.editorial-hero {
+		font-family:
+			system-ui,
+			-apple-system,
+			sans-serif;
+		text-align: left;
+		padding: 0 clamp(1rem, 5vw, 4rem);
+		width: 100%;
+	}
+
+	.hero-greeting {
+		color: #000;
+		font-weight: 300;
+		letter-spacing: 0.3em;
+		padding-left: 0.5rem;
+	}
+
+	.hero-name {
+		position: relative;
+		display: block;
+		margin-top: 0;
+		width: 100%;
+		overflow: visible;
+	}
+
+	.name-text {
+		font-size: clamp(4rem, 15vw, 14rem);
+		font-weight: 900;
+		line-height: 1.1;
+		color: #000;
+		text-transform: uppercase;
+		letter-spacing: -0.02em;
+		display: block;
+		position: relative;
+		width: 100%;
+		overflow: visible;
+		padding: 2rem 0;
+	}
+
+	/* Highlight styles */
+	.highlight-yellow {
+		background: #fbbf24;
+		padding: 0.2em 0.4em;
+		font-weight: 700;
+	}
+
+	.highlight-accent {
+		color: oklch(55.27% 0.195 19.06);
+		font-weight: 900;
+	}
+
+	.highlight-pink {
+		color: #f43f5e;
+		font-weight: 900;
+	}
+
+	/* Editorial button */
+	.editorial-button {
+		transition: all 0.3s ease;
+	}
+
+	.editorial-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 4px 4px 0 #000;
+	}
+
+	/* Decorative elements */
+	.decorative-overlay,
+	.decorative-frame,
+	.decorative-accent {
+		pointer-events: none;
+		mix-blend-mode: multiply;
+	}
+
+	/* Info cards */
+	.info-card {
+		transition: transform 0.3s ease;
+	}
+
+	.info-card:hover {
+		transform: translateX(4px);
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 640px) {
+		.name-text {
+			font-size: 5rem;
+		}
+
+		.decorative-overlay,
+		.decorative-frame,
+		.decorative-accent {
+			opacity: 0.5;
+			transform: scale(0.7);
+		}
+	}
+
+	/* Dark mode adjustments */
+	:global([data-theme="dark"]) .editorial-homepage {
+		background: oklch(23.64% 0.0045 248);
+		color: oklch(83.54% 0 264);
+	}
+
+	:global([data-theme="dark"]) .name-text,
+	:global([data-theme="dark"]) .hero-greeting {
+		color: oklch(83.54% 0 264);
+	}
+
+	:global([data-theme="dark"]) .editorial-button {
+		border-color: oklch(83.54% 0 264);
+		color: oklch(83.54% 0 264);
+	}
+
+	:global([data-theme="dark"]) .editorial-button:hover {
+		background: oklch(83.54% 0 264);
+		color: oklch(23.64% 0.0045 248);
+		box-shadow: 4px 4px 0 oklch(83.54% 0 264);
+	}
+
+	:global([data-theme="dark"]) .decorative-frame {
+		border-color: oklch(83.54% 0 264);
+	}
+
+	:global([data-theme="dark"]) .hero-section {
+		border-top-color: oklch(40% 0 0);
+	}
+</style>
